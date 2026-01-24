@@ -14,18 +14,17 @@ function moveZerosToEnd(arr) {
     let lastNonZeroIndex = 0;
 
     for(let i = 0; i < arr.length; i++) {
-        if(arr[i] === 0) {
-            for(let j = i + 1; j < arr.length; j++) {
-                if(arr[j] !== 0) {
-                    // Swap elements
-                    let temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                    break;
-                }
-        }
+      if(arr[i] !== 0) {
+        arr[lastNonZeroIndex] = arr[i]
+        lastNonZeroIndex ++
       }
     }
+
+    for(let i = lastNonZeroIndex; i < arr.length; i++) {
+      arr[i] = 0
+    }
+
+    return arr;
 }
 
 moveZerosToEnd(numbers);
