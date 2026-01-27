@@ -11,34 +11,18 @@ No puedes usar funciones de alto nivel como .sort(), .filter() o métodos mágic
 const numbers = [0, 1, 0, 3, 12];
 
 function moveZerosToEnd(arr) {
-    let lastNonZeroIndex = 0;
-
-    for(let i = 0; i < arr.length; i++) {
-      if(arr[i] !== 0) {
-        arr[lastNonZeroIndex] = arr[i]
-        lastNonZeroIndex ++
-      }
-    }
-
-    for(let i = lastNonZeroIndex; i < arr.length; i++) {
-      arr[i] = 0
-    }
-
-    return arr;
-}
-
-moveZerosToEnd(numbers);
-console.log(numbers); // Output: [1, 3, 12, 0, 0]
-
-function moveZerosOneLoop(arr) {
-  let lastNonZeroInd = 0;
+  let lastNonZeroIndex = 0;
 
   for(let i = 0; i < arr.length; i++) {
     if(arr[i] !== 0) {
-      const temp = arr[lastNonZeroInd]
-      arr[lastNonZeroInd] = arr[i]
+      const temp = arr[lastNonZeroIndex]
+      arr[lastNonZeroIndex] = arr[i]
       arr[i] = temp
-      lastNonZeroInd ++
+      lastNonZeroIndex ++
     }
   }
+
+  return arr
 }
+
+moveZerosToEnd(numbers) // Output: [1, 3, 12, 0, 0]
