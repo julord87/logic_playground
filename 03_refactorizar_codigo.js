@@ -38,11 +38,8 @@ async function sendEmail(to, subject, body) {
 }
 
 async function updateProductStock(item) {
-  // La DB se encarga de limpiar los datos antes de ejecutarlos
-  await db.query("UPDATE productos SET stock = stock - ? WHERE id = ?", [
-    item.quantity,
-    item.id,
-  ]);
+// La DB se encarga de limpiar los datos antes de ejecutarlos
+await db.query("UPDATE productos SET stock = stock - ? WHERE id = ?", [item.quantity, item.id]);
 }
 
 async function procesar(items, user) {
