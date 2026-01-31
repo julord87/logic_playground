@@ -25,4 +25,4 @@ function moveZerosToEnd(arr) {
   return arr
 }
 
-moveZerosToEnd(numbers) // Output: [1, 3, 12, 0, 0]
+console.log(moveZerosToEnd(numbers)) // Output: [1, 3, 12, 0, 0]
