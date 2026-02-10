@@ -18,8 +18,7 @@ describe('Pruebas de Descuento', () => {
   });
 
   it('No debería aceptar numeros negativos', () => {
-    const resultado = calculateDiscountedTotal(-1)
-    expect(resultado) = "Error, el precio no puede ser negativo"
-  })
-  
+    expect(() => calculateDiscountedTotal(-100)).toThrow("Total no puede ser negativo");
+  });
+
 });
