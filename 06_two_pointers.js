@@ -11,16 +11,46 @@ function sumZero(arr) {
 
   for(let i = 0; i < arr.length; i++) {
     let pointer = arr[i];
-    searchOposite(pointer, arr)
+    let result = searchOposite(pointer, arr)
+    if(result) {
+      return result;
+    }
   }
 
   return undefined;
 }
 
 function searchOposite(num, arr) {
-  for(let i; i < arr.length; i++) {
+  for(let i = 0; i < arr.length; i++) {
     if(arr[i] + num === 0) {
       return [num, arr[i]]
     }
   }
 }
+
+console.log(sumZero(arr_one)); // [-3, 3]
+console.log(sumZero(arr_two)); // undefined
+
+
+//// Solución con dos punteros
+
+function sumZeroTwoPointers(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while(left < right) {
+    let sum = arr[left] + arr[right]
+    if(sum === 0) {
+      return [arr[left], arr[right]]
+    } else if (sum > 0) {
+      right --
+    } else {
+      left ++
+    }
+  }
+
+  return undefined;
+}
+
+console.log(sumZeroTwoPointers(arr_one))
+console.log(sumZeroTwoPointers(arr_two))
