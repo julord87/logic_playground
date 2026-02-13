@@ -13,11 +13,52 @@ const num_two = 1;
 const num_three = 3;
 
 function sumInArray(arr, n) {
-
-  for(let i = 0; i < arr.length - n; i++) {
-    let max_sum = 0;
-    for(let j = i; j < n; j++) {
-      max_sum += arr[j]
+  let max_sum = -Infinity; // O puedes inicializarlo con null
+  
+  for(let i = 0; i <= arr.length - n; i++) {  // Nota: <= para incluir el último grupo
+    let temp = 0;  // Mover aquí
+    
+    for(let j = i; j < i + n; j++) {  // j < i + n para sumar n elementos
+      temp += arr[j];
+    }
+    
+    if(temp > max_sum) {
+      max_sum = temp;
     }
   }
+  
+  return max_sum;
 }
+
+console.log(sumInArray(arr_one, num_one)) // 10
+console.log(sumInArray(arr_two, num_two)) // 6
+console.log(sumInArray(arr_one, num_three)) // 15
+
+
+//// Solución con ventana deslizante
+
+function sumInArraySlidingWindow(arr, n) {
+  if(n > arr.length) return null; // Manejar caso donde n es mayor que el tamaño del arreglo
+
+  let max_sum = 0;
+
+  // Calculo la primera suma del array
+  for(let i = 0; i < n; i ++) {
+    max_sum += arr[i]
+  }
+
+  let temp_sum = max_sum;
+
+  // Deslizar la window
+  for(let i = n; i < arr.length; i++) {
+    temp_sum = temp_sum - arr[i - n] + arr[i];
+    if(temp_sum > max_sum) {
+      max_sum = temp_sum
+    }
+  }
+  return max_sum;
+}
+
+console.log(sumInArraySlidingWindow(arr_one, num_one)) // 10
+console.log(sumInArraySlidingWindow(arr_two, num_two)) // 6
+console.log(sumInArraySlidingWindow(arr_one, num_three)) // 15
