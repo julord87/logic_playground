@@ -51,4 +51,20 @@ class SinglyLinkedList {
 
     return current; // Devolvemos el nodo eliminado (la vieja cola)
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    const head = this.head;
+
+    this.head = this.head.next;
+    this.length --
+
+    if(this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return head;
+  }
 }
