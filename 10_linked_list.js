@@ -127,9 +127,9 @@ class SinglyLinkedList {
   }
 
   remove(index) {
-    if(index < 0 || index >= this.length) return undefined;
+    if (index < 0 || index >= this.length) return undefined;
 
-    if(index === this.length - 1) {
+    if (index === this.length - 1) {
       const deleted = this.pop();
       return deleted;
     } else if (index === 0) {
@@ -139,8 +139,30 @@ class SinglyLinkedList {
       const prev = this.get(index - 1);
       const deleted = prev.next;
       prev.next = deleted.next;
-      this.length --;
+      this.length--;
       return deleted;
     }
+  }
+
+  reverse() {
+    let node = this.head;
+
+    this.head = this.tail;
+    this.tail = node;
+
+    let next = null;
+    let prev = null;
+
+    let count = 0;
+
+    while(count < this.length) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next; 
+      count ++;
+    }
+
+    return this;
   }
 }
